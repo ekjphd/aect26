@@ -547,3 +547,11 @@ ul.ink li::before { content: "✓"; position: absolute; left: 0; font-family: va
 .s-cover .sub { margin-top: calc(20 * var(--p)); }
 .s-cover .who-name { font-family: var(--serif); font-weight: 800; font-style: italic; font-size: calc(76 * var(--p)); line-height: 1.05; margin-top: calc(46 * var(--p)); }
 .s-cover .who-meta { font-family: var(--serif); font-weight: 700; color: var(--ink); font-size: calc(48 * var(--p)); line-height: 1.25; margin-top: calc(12 * var(--p)); }
+/* book covers (screen 2): covers are the focal point */
+.s-books { gap: calc(24 * var(--p)); }
+.s-books .books { display: flex; justify-content: center; align-items: center; gap: calc(110 * var(--p)); }
+.s-books .book { margin: 0; padding: calc(14 * var(--p)); }
+.s-books .book img { display: block; height: calc(620 * var(--p)); width: auto; }
+.s-books .book:first-child { transform: rotate(-3deg); } .s-books .book:last-child { transform: rotate(2.5deg); }
+.s-books .books-label { font-size: calc(64 * var(--p)); color: var(--purple); }
+@media (max-aspect-ratio: 1/1) { .s-books .books { flex-direction: column; gap: calc(50 * var(--p)); } .s-books .book img { height: auto; width: min(100%, calc(520 * var(--p))); } }
