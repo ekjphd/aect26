@@ -567,3 +567,19 @@ ul.ink li::before { content: "✓"; position: absolute; left: 0; font-family: va
 #presenter .p-text:focus { background: rgba(255,255,255,.07); box-shadow: 0 0 0 2px #c2338f; }
 #presenter .p-edited { color: #ffd76a; }
 #presenter .p-reset { font-size: 12px; padding: 2px 8px; margin-left: 6px; letter-spacing: 0; }
+/* presenter view v2: fits one screen, no scrolling; slides smaller, notes wide */
+#presenter { height: 100vh; min-height: 0; overflow: hidden; gap: 10px; padding: 10px 16px; }
+#presenter .p-top { gap: 16px; }
+#presenter .p-clock { font-size: 26px; }
+#presenter .p-pace { font-size: 16px; gap: 14px; } #presenter .p-pace b { font-size: 20px; }
+#presenter button { font-size: 15px; padding: 7px 13px; }
+#presenter .p-main { grid-template-columns: minmax(0, 34%) minmax(0, 1fr); gap: 16px; min-height: 0; flex: 1; }
+#presenter .p-slides { display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+#presenter .p-slides .p-frame { width: 100%; }
+#presenter .p-slides .p-frame.small { width: 70%; }
+#presenter .p-slides .p-label { margin: 6px 0 2px; font-size: 12px; }
+#presenter .p-notes { min-height: 0; overflow-y: auto; font-size: 19px; line-height: 1.45; padding: 12px 18px; }
+#presenter .p-notes p { margin: 0 0 .6em; }
+#presenter .p-help { font-size: 12px; }
+@media (max-height: 700px) { #presenter .p-notes { font-size: 17px; } }
+#presenter .p-notes, #presenter .p-notes p, #presenter .p-notes li, #presenter .p-text { font-size: var(--pn, 19px) !important; line-height: 1.42 !important; font-family: var(--body); }

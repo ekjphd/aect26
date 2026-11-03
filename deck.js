@@ -65,9 +65,11 @@
       <div class="p-top"><div class="p-clock"></div><div class="p-pace"></div>
         <div class="p-btns"><button data-d="-1">◀ back</button><button data-d="1">next ▶</button><button data-t>start timer (T)</button><button data-dl title="Download all notes, including your edits">download notes</button></div></div>
       <div class="p-main">
-        <div class="p-cur"><div class="p-label">NOW</div><div class="p-frame"><iframe src="${base}?preview=0" title="current screen"></iframe></div></div>
-        <div class="p-side"><div class="p-label">NEXT</div><div class="p-frame small"><iframe src="${base}?preview=1" title="next screen"></iframe></div>
-          <div class="p-notes"></div></div>
+        <div class="p-slides">
+          <div class="p-label">NOW</div><div class="p-frame"><iframe src="${base}?preview=0" title="current screen"></iframe></div>
+          <div class="p-label">NEXT</div><div class="p-frame small"><iframe src="${base}?preview=1" title="next screen"></iframe></div>
+        </div>
+        <div class="p-notes"></div>
       </div>
       <div class="p-help">space / → next · ← back · T timer · click the notes to edit them (saved in this browser) · keep this window on your laptop; the audience window follows.</div>`;
     document.body.appendChild(P);
@@ -96,6 +98,9 @@
       editing.innerHTML = notesFor(i);
       const me = i;
       editing.addEventListener('input', () => store.set(KEY(me), editing.innerHTML));
+      // shrink notes text until it fits without scrolling (19px down to 13px)
+      let fs = 19; notesBox.style.setProperty('--pn', fs + 'px');
+      while (fs > 13 && notesBox.scrollHeight > notesBox.clientHeight + 2) { fs -= 1; notesBox.style.setProperty('--pn', fs + 'px'); }
       const rb = notesBox.querySelector('.p-reset');
       if (rb) rb.onclick = () => { store.del(KEY(me)); pGo(me, true, st); };
       pRender();
