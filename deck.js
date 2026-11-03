@@ -211,6 +211,20 @@
     });
   }
 
+  // scale the embedded sandbox so the whole simulator fits its frame
+  const SIM_W = 1680;
+  function fitSims() {
+    document.querySelectorAll('.sim-wrap').forEach((w) => {
+      const f = w.querySelector('iframe'); if (!f) return;
+      const sc = w.clientWidth / SIM_W; if (!sc) return;
+      f.style.width = SIM_W + 'px';
+      f.style.height = (w.clientHeight / sc) + 'px';
+      f.style.transform = `scale(${sc})`;
+    });
+  }
+  window.addEventListener('resize', fitSims);
+  setTimeout(fitSims, 0);
+
   document.querySelectorAll('.qr[data-url]').forEach((el) => {
     if (typeof QRCode === 'undefined') { el.innerHTML = '<span class="hand" style="font-size:64px;text-align:center">ekjphd.com/<br>sandbox</span>'; return; }
     el.innerHTML = '';

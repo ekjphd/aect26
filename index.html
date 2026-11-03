@@ -24,13 +24,12 @@
 
 <main id="deck">
 
-<section class="screen s-title" data-by="2:55">
-  <div class="layout">
-    <div class="paper torn"><div class="tape tl"></div>
-      <h1><span class="em" style="font-style:italic">Branching</span><br>Out</h1>
-      <p class="sub">Scaffolding GitHub Portfolios in Diverse Undergraduate Courses</p>
-    </div>
-    <div class="swatch photo"><div class="tape teal tc"></div><div class="art"><div class="name">Emily K. Johnson<small>University of Central Florida</small></div></div></div>
+<section class="screen s-title s-cover" data-by="2:55">
+  <div class="paper torn"><div class="tape tl"></div>
+    <h1><span class="em" style="font-style:italic">Branching</span> Out:</h1>
+    <p class="sub">Scaffolding GitHub Portfolios in Diverse Undergraduate Courses</p>
+    <div class="who-name em">Emily K. Johnson</div>
+    <div class="who-meta">University of Central Florida<br>ekj@ucf.edu</div>
   </div>
   <aside class="notes">Press <b>T</b> to start the timer. Welcome. I'm Emily Johnson, from the English department at UCF. This talk is about getting non-coders (English, digital humanities, and technical communication students) to build and publish a professional portfolio on GitHub Pages without opening a terminal. This site is itself a GitHub Pages site.</aside>
 </section>
@@ -46,7 +45,7 @@
   <div class="scrap torn"><div class="tape tc"></div>
     <div class="git">$ gh repo fork</div>
     <div class="verb">fork</div>
-    <h2>Three courses, one template</h2>
+    <img class="photo jargon-img" src="assets/layer-jargon.jpg" alt="Before You Begin: GitHub has its own jargon. Fork = copy, Commit = save, Pages = website (basically), Blame = look at past changes to a file">
   </div>
   <aside class="notes">This talk follows the GitHub workflow: fork, commit, and then the patch notes on what has changed since. First, the courses.</aside>
 </section>
@@ -78,7 +77,7 @@
       <li>Digital portfolio</li>
       </ul>
     </div>
-    <div class="photo shot"><div class="tape tl"></div><img src="assets/enc3241.png" alt="The ENC 3241 portfolio template students fork"></div>
+    <div class="photo shot"><div class="tape tl"></div><img src="assets/enc3241-course.png" alt="ENC 3241 course site"></div>
   </div>
   <aside class="notes">The technical communication course, Spring 2026. The template students fork (ekjphd.com/ENC3241) has a Home page plus Resume, Cover Letter, Instructions, and Proposal pages. The portfolio <i>is</i> the course.</aside>
 </section>
@@ -250,10 +249,10 @@
 
 <section class="screen s-demo big" data-by="3:04">
   <div class="photo browser"><div class="tape sky tl"></div>
-    <div class="chrome"><i></i><i></i><i></i><span>ekjphd.com/sandbox</span><em class="hand">the sandbox: try it with me</em></div>
-    <iframe src="https://ekjphd.com/sandbox/sim.html" title="GitHub sandbox simulation (live)" loading="eager"></iframe>
+    <div class="chrome"><i></i><i></i><i></i><span>ekjphd.com/sandbox</span><em class="hand">the sandbox: try it with me</em><a class="newtab" href="sandbox/sim.html" target="_blank" rel="noopener">open in new tab ↗</a></div>
+    <div class="sim-wrap"><iframe src="sandbox/sim.html" title="GitHub sandbox simulation (live)" loading="eager"></iframe></div>
   </div>
-  <aside class="notes">About 2 minutes, then move on by 3:06. <b>The sandbox is live on this screen</b>: click inside it to demo. When you're done, click the table outside the sandbox (or press space after clicking outside it) to get your keys back. I used the free version of Claude (Sonnet 4.5) and UCF's Copilot to build a step-by-step simulation of the GitHub web interface: fork my template, customize the home page, enable Pages. It took many iterations and isn't perfect, but it gets students familiar with where things are. AI is closing the gap between technical skills and educators in every discipline. Backup link: <a href="https://ekjphd.com/sandbox/" target="_blank">open the sandbox</a>.</aside>
+  <aside class="notes">About 2 minutes, then move on by 3:06. <b>The sandbox is live on this screen</b>: click inside it to demo. When you're done, click the table outside the sandbox (or press space after clicking outside it) to get your keys back. <b>If it gets stuck</b>, use "open in new tab ↗" in the frame bar. I used the free version of Claude (Sonnet 4.5) and UCF's Copilot to build a step-by-step simulation of the GitHub web interface: fork my template, customize the home page, enable Pages. It took many iterations and isn't perfect, but it gets students familiar with where things are. AI is closing the gap between technical skills and educators in every discipline. Backup link: <a href="https://ekjphd.com/sandbox/" target="_blank">open the sandbox</a>.</aside>
 </section>
 
 <section class="screen s-site" data-by="3:06">
@@ -336,16 +335,6 @@
   <aside class="notes">Writing now happens in repositories, in Markdown, under version control. Technical communication is writing, and digital literacy belongs in the humanities.</aside>
 </section>
 
-<section class="screen s-takeaways">
-  <h2 class="title-row">Take it to your course</h2>
-  <div class="row">
-    <div class="sticky sky"><h3>Offer it three ways</h3></div>
-    <div class="sticky"><h3>Assign small pieces</h3></div>
-    <div class="sticky aqua"><h3>Teach skills that transfer</h3></div>
-  </div>
-  <aside class="notes">1) Redundant resources: sandbox, video, written steps. 2) Small pieces over one big project. 3) Skills that adapt beyond any one platform. And fork my template, which is public. <b>Limits &amp; next steps:</b> the evidence so far is portfolios and reflections. Next I'll compare the video with the sandbox, then measure changes in digital skills and digital self-efficacy.</aside>
-</section>
-
 <section class="screen s-part" data-part="Patch notes" data-by="3:12">
   <div class="scrap torn"><div class="tape sky tl"></div>
     <div class="git">$ git log --since=2025</div>
@@ -392,14 +381,14 @@
   <aside class="notes"><b>You answer this one out loud. Optional prompts:</b> If agents can click the buttons, the literacy shifts. <b>Direct:</b> know what to ask for and where things live. <b>Check:</b> read a commit and roll back a bad edit; version control matters more when a machine is editing your files. <b>Own:</b> the reflection, the argument, and the voice stay human. That's why the sandbox, and the English course, still matter.</aside>
 </section>
 
-<section class="screen s-title" data-by="3:15">
-  <div class="layout">
-    <div class="paper torn"><div class="tape tl"></div>
-      <h1 style="font-size:calc(140 * var(--p))">Questions?</h1>
-      <p class="sub" style="font-style:normal;color:var(--magenta);font-weight:700"><a href="https://ekjphd.com/aect26/" style="color:inherit;text-decoration:none">ekjphd.com/aect26</a></p>
-      <p class="sub" style="font-style:normal;margin-top:calc(10 * var(--p))"><a href="https://github.com/ekjphd" style="color:inherit;text-decoration:none">github.com/ekjphd</a></p>
+<section class="screen s-final" data-by="3:15">
+  <div class="paper torn"><div class="tape tc"></div>
+    <h1>Questions?</h1>
+    <div class="final-links">
+      <a href="https://ekjphd.com/aect26/" class="em">ekjphd.com/aect26</a>
+      <a href="https://github.com/ekjphd">github.com/ekjphd</a>
+      <span class="hand teal">ekj@ucf.edu</span>
     </div>
-    <div class="swatch photo"><div class="tape teal tc"></div><div class="art"><div class="name">Emily K. Johnson<small>ekj@ucf.edu</small></div></div></div>
   </div>
   <aside class="notes">Five minutes for questions; wrap by 3:20. Point people to this site (ekjphd.com/aect26) and to github.com/ekjphd, where all the templates and the sandbox live and can be forked.</aside>
 </section>

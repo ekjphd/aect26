@@ -526,3 +526,24 @@ ul.ink li::before { content: "✓"; position: absolute; left: 0; font-family: va
 .s-demo.big .browser .tape { left: calc(-30 * var(--p)); right: auto; top: calc(-22 * var(--p)); transform: rotate(-10deg); }
 .s-site h2.title-row .sitecode { font-size: calc(52 * var(--p)); margin-left: calc(16 * var(--p)); vertical-align: middle; }
 .s-verbs h2.ask { font-family: var(--hand); font-weight: 700; font-size: calc(170 * var(--p)); line-height: 1.05; margin: 0; max-width: calc(1400 * var(--p)); }
+.s-part .jargon-img { display: block; width: calc(820 * var(--p)); max-width: 100%; height: auto; margin: calc(20 * var(--p)) auto 0; padding: calc(12 * var(--p)); transform: rotate(1.5deg); }
+.s-part:has(.jargon-img) .scrap { padding: calc(30 * var(--p)) calc(60 * var(--p)) calc(40 * var(--p)); } .s-part:has(.jargon-img) .git { font-size: calc(40 * var(--p)); margin-bottom: 0; } .s-part:has(.jargon-img) .verb { font-size: calc(150 * var(--p)); } .s-part .jargon-img { width: calc(620 * var(--p)); margin-top: calc(10 * var(--p)); }
+.s-fears .term .fadein { object-fit: cover; object-position: center top; top: calc(22 * var(--p)); height: calc(100% - 44 * var(--p)); aspect-ratio: auto; }
+/* sandbox: no tilt (keeps typing/hit-testing crisp) + backup link */
+.s-demo.big .photo.browser { transform: none; }
+.s-demo.big .browser .chrome .newtab { margin-left: calc(24 * var(--p)); font-size: calc(24 * var(--p)); color: var(--purple); text-decoration: none; white-space: nowrap; }
+/* questions page: centered, links spread evenly, email below */
+.s-final .paper { width: min(100%, calc(1100 * var(--p))); min-height: calc(680 * var(--p)); display: flex; flex-direction: column; align-items: center; text-align: center; padding: calc(60 * var(--p)) calc(80 * var(--p)); transform: rotate(-.8deg); }
+.s-final h1 { font-size: calc(140 * var(--p)); }
+.s-final .final-links { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; width: 100%; margin-top: calc(20 * var(--p)); }
+.s-final .final-links a { font-family: var(--serif); font-weight: 700; font-size: calc(72 * var(--p)); color: var(--ink); text-decoration: none; }
+.s-final .final-links a.em { color: var(--magenta); }
+.s-final .final-links .hand { font-size: calc(76 * var(--p)); }
+.s-demo.big .sim-wrap { position: relative; flex: 1; min-height: 0; overflow: hidden; background: #fff; }
+.s-demo.big .sim-wrap iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; min-height: 0; flex: none; }
+/* cover: no image; name in the "Branching" style, affiliation in the "Out:" style */
+.s-cover .paper { width: min(100%, calc(1240 * var(--p))); min-height: 0; flex: none; text-align: center; align-items: center; padding: calc(60 * var(--p)) calc(90 * var(--p)) calc(64 * var(--p)); transform: rotate(-1deg); }
+.s-cover h1 { font-size: calc(150 * var(--p)); }
+.s-cover .sub { margin-top: calc(20 * var(--p)); }
+.s-cover .who-name { font-family: var(--serif); font-weight: 800; font-style: italic; font-size: calc(76 * var(--p)); line-height: 1.05; margin-top: calc(46 * var(--p)); }
+.s-cover .who-meta { font-family: var(--serif); font-weight: 700; color: var(--ink); font-size: calc(48 * var(--p)); line-height: 1.25; margin-top: calc(12 * var(--p)); }
