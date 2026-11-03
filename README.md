@@ -12,7 +12,8 @@ A talk told as a stack of paper on a table, following the GitHub workflow: **For
 |---|---|
 | **space** / → / click | next screen |
 | ← | back |
-| **N** | speaker notes, with the pace target for each screen |
+| **P** | open the **presenter view** (notes, current and next screen, timer) in a second window; the two windows stay in sync |
+| **N** | speaker notes on this same screen (the audience sees them too) |
 | **T** | start the 20-minute timer (press when you begin at 2:55) |
 | **F** | fullscreen |
 | tabs at top | jump to Fork / Commit / Publish / Merge |
