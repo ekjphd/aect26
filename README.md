@@ -4,24 +4,3 @@
 Emily K. Johnson · University of Central Florida · ekj@ucf.edu · AECT 2026
 
 Live at **ekjphd.com/aect26** (GitHub Pages, repo `ekjphd/aect26`).
-
-A talk told as a stack of paper on a table, following the GitHub workflow: **Fork → Commit → Publish → Merge**.
-
-## Presenting
-| Key | Action |
-|---|---|
-| **space** / → / click | next screen |
-| ← | back |
-| **P** | open the **presenter view** (notes, current and next screen, timer) in a second window; the two windows stay in sync |
-| **N** | speaker notes on this same screen (the audience sees them too) |
-| **T** | start the 20-minute timer (press when you begin at 2:55) |
-| **F** | fullscreen |
-| tabs at top | jump to Fork / Commit / Publish / Merge |
-
-Timing: talk 2:55–3:15 pm, questions 3:15–3:20. The notes panel shows the target time for each screen and warns you if you're running behind.
-
-## Files
-- `index.html`: every `<section class="screen">` is one screen, and its `<aside class="notes">` holds the speaker notes.
-- `style.css`: colors and type at the top. `--min: 60px` equals 36pt, the smallest size for on-screen text.
-- `deck.js`: navigation, torn-paper edges, timer, and the `ekjphd.com/aect26` label on every screen.
-- `assets/`: watercolor art from the ACH 2024 and ELO 2024 decks, plus a screenshot of the ENC 3241 template.
