@@ -17,6 +17,8 @@
   const N = screens.length;
   let i = 0, t0 = null, presenterWin = null;
   let goImpl = () => {}, timerImpl = () => {};
+  let st = 0; // click-to-reveal steps shown on the current screen
+  const stepsOf = (n) => (screens[n] ? screens[n].querySelectorAll('.reveal').length : 0);
 
   // ---------- sync between windows (BroadcastChannel + direct postMessage) ----------
   let bc = null;
@@ -30,9 +32,9 @@
   }
   function onMsg(m) {
     if (!m || !m.bo) return;
-    if (m.type === 'go') goImpl(m.i, true);
+    if (m.type === 'go') goImpl(m.i, true, m.st || 0);
     else if (m.type === 't0') { t0 = m.t0; timerImpl(); }
-    else if (m.type === 'hello' && MODE === 'audience') { send({ type: 'go', i }); if (t0) send({ type: 't0', t0 }); }
+    else if (m.type === 'hello' && MODE === 'audience') { send({ type: 'go', i, st }); if (t0) send({ type: 't0', t0 }); }
   }
   if (bc) bc.onmessage = (e) => onMsg(e.data);
   window.addEventListener('message', (e) => onMsg(e.data));
@@ -70,34 +72,37 @@
       <div class="p-help">space / → next · ← back · T timer · keep this window on your laptop; the audience window follows.</div>`;
     document.body.appendChild(P);
     const notesBox = P.querySelector('.p-notes'), pace = P.querySelector('.p-pace'), clock = P.querySelector('.p-clock');
-    P.querySelectorAll('[data-d]').forEach((b) => b.onclick = () => pGo(i + Number(b.dataset.d)));
+    P.querySelectorAll('[data-d]').forEach((b) => b.onclick = () => (Number(b.dataset.d) > 0 ? pNext() : pPrev()));
     P.querySelector('[data-t]').onclick = startTimer;
 
     const pRender = () => {
       pace.innerHTML = paceHTML();
       clock.textContent = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
     };
-    const pGo = (n, remote) => {
+    const pGo = (n, remote, s = 0) => {
       i = Math.max(0, Math.min(N - 1, n));
+      st = Math.max(0, Math.min(stepsOf(i), s));
       const a = screens[i].querySelector('.notes');
       notesBox.innerHTML = `<div class="p-label">NOTES · screen ${i + 1}</div>${a ? a.innerHTML : ''}`;
       pRender();
-      if (!remote) send({ type: 'go', i });
-      else P.querySelectorAll('iframe').forEach((f) => { try { f.contentWindow.postMessage({ bo: 1, type: 'go', i }, '*'); } catch (e) {} });
+      if (!remote) send({ type: 'go', i, st });
+      else P.querySelectorAll('iframe').forEach((f) => { try { f.contentWindow.postMessage({ bo: 1, type: 'go', i, st }, '*'); } catch (e) {} });
     };
+    const pNext = () => (st < stepsOf(i) ? pGo(i, false, st + 1) : pGo(i + 1, false, 0));
+    const pPrev = () => (st > 0 ? pGo(i, false, st - 1) : pGo(i - 1, false, i > 0 ? stepsOf(i - 1) : 0));
     goImpl = pGo; timerImpl = pRender;
     setInterval(pRender, 1000);
     document.addEventListener('keydown', (e) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       const k = e.key;
-      if ([' ', 'ArrowRight', 'ArrowDown', 'PageDown', 'Enter'].includes(k)) { e.preventDefault(); pGo(i + 1); }
-      else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(k)) { e.preventDefault(); pGo(i - 1); }
+      if ([' ', 'ArrowRight', 'ArrowDown', 'PageDown', 'Enter'].includes(k)) { e.preventDefault(); pNext(); }
+      else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(k)) { e.preventDefault(); pPrev(); }
       else if (k === 'Home') pGo(0);
       else if (k === 'End') pGo(N - 1);
       else if (k === 't' || k === 'T') startTimer();
     });
     // once the previews load, sync them; then ask the audience window where it is
-    P.querySelectorAll('iframe').forEach((f) => f.addEventListener('load', () => { try { f.contentWindow.postMessage({ bo: 1, type: 'go', i }, '*'); } catch (e) {} }));
+    P.querySelectorAll('iframe').forEach((f) => f.addEventListener('load', () => { try { f.contentWindow.postMessage({ bo: 1, type: 'go', i, st }, '*'); } catch (e) {} }));
     pGo((parseInt(location.hash.slice(1), 10) || 1) - 1, true);
     send({ type: 'hello' });
     return;
@@ -157,12 +162,14 @@
     notes.innerHTML = `<div class="meta">${paceHTML()}</div>${a ? a.innerHTML : ''}`;
   }
   setInterval(renderTimer, 1000);
-  goImpl = (n, remote) => go(n, remote); timerImpl = renderTimer;
+  goImpl = (n, remote, s) => go(n, remote, s); timerImpl = renderTimer;
 
-  function go(n, remote) {
+  function go(n, remote, s = 0) {
     i = Math.max(0, Math.min(N - 1, n));
+    st = Math.max(0, Math.min(stepsOf(i), s));
     const shown = i + OFFSET;
     screens.forEach((s, k) => s.classList.toggle('active', k === shown));
+    if (screens[shown]) screens[shown].querySelectorAll('.reveal').forEach((el, x) => el.classList.toggle('shown', x < (OFFSET ? 0 : st)));
     end.classList.toggle('active', shown >= N);
     dots.forEach((d, k) => { d.classList.toggle('done', k < i); d.classList.toggle('here', k === i); });
     let cur = -1; parts.forEach((p, k) => { if (p.n <= i) cur = k; });
@@ -170,9 +177,11 @@
     if (MODE === 'audience') {
       renderTimer();
       if (history.replaceState) history.replaceState(null, '', '#' + (i + 1));
-      if (!remote) send({ type: 'go', i });
+      if (!remote) send({ type: 'go', i, st });
     }
   }
+  const next = () => (st < stepsOf(i) ? go(i, false, st + 1) : go(i + 1, false, 0));
+  const prev = () => (st > 0 ? go(i, false, st - 1) : go(i - 1, false, i > 0 ? stepsOf(i - 1) : 0));
 
   if (MODE === 'audience') {
     function openPresenter() {
@@ -182,8 +191,8 @@
     document.addEventListener('keydown', (e) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       const k = e.key;
-      if ([' ', 'ArrowRight', 'ArrowDown', 'PageDown', 'Enter'].includes(k)) { e.preventDefault(); go(i + 1); }
-      else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(k)) { e.preventDefault(); go(i - 1); }
+      if ([' ', 'ArrowRight', 'ArrowDown', 'PageDown', 'Enter'].includes(k)) { e.preventDefault(); next(); }
+      else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(k)) { e.preventDefault(); prev(); }
       else if (k === 'Home') go(0);
       else if (k === 'End') go(N - 1);
       else if (k === 'n' || k === 'N') { notes.classList.toggle('on'); renderTimer(); }
@@ -191,13 +200,13 @@
       else if (k === 't' || k === 'T') startTimer();
       else if (k === 'f' || k === 'F') { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); }
     });
-    deck.addEventListener('click', (e) => { if (!e.target.closest('a, button') && !window.getSelection().toString()) go(i + 1); });
+    deck.addEventListener('click', (e) => { if (!e.target.closest('a, button') && !window.getSelection().toString()) next(); });
     let x0 = null;
     document.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
     document.addEventListener('touchend', (e) => {
       if (x0 === null) return;
       const dx = e.changedTouches[0].clientX - x0;
-      if (Math.abs(dx) > 50) go(i + (dx < 0 ? 1 : -1));
+      if (Math.abs(dx) > 50) (dx < 0 ? next() : prev());
       x0 = null;
     });
   }

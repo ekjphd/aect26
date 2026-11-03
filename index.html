@@ -48,10 +48,10 @@
     <div class="verb">fork</div>
     <h2>Three courses, one template</h2>
   </div>
-  <aside class="notes">This talk follows the GitHub workflow: fork, commit, publish, merge. First, the courses.</aside>
+  <aside class="notes">This talk follows the GitHub workflow: fork, commit, and then the patch notes on what has changed since. First, the courses.</aside>
 </section>
 
-<section class="screen s-course2">
+<section class="screen s-course2 shot-first">
   <div class="layout">
     <div class="card">
       <span class="code-stamp">DIG 3171</span>
@@ -67,7 +67,7 @@
   <aside class="notes">An undergraduate elective that's required for the DH minor. It's popular with Digital Media majors and draws many other majors. It's research-intensive (a High Impact Practice), online and asynchronous. It examines DH tools through critical making: process and argument over polish. The labs work like a choose-your-own-tool sampler: Place &amp; Space (StoryMaps, Google Earth), Digital Narrative (Twine, Bitsy, Omeka, chatbots), and Digital Analysis (Voyant, AntConc, AI), plus a four-part research project.</aside>
 </section>
 
-<section class="screen s-course2">
+<section class="screen s-course2 shot-first">
   <div class="layout">
     <div class="card alt">
       <span class="code-stamp" style="color:var(--magenta)">ENC 3241</span>
@@ -83,7 +83,7 @@
   <aside class="notes">The technical communication course, Spring 2026. The template students fork (ekjphd.com/ENC3241) has a Home page plus Resume, Cover Letter, Instructions, and Proposal pages. The portfolio <i>is</i> the course.</aside>
 </section>
 
-<section class="screen s-course2">
+<section class="screen s-course2 shot-first">
   <div class="layout">
     <div class="card">
       <span class="code-stamp" style="color:var(--purple)">ENC 4265</span>
@@ -106,14 +106,13 @@
       <div class="strip">The command line</div>
       <div class="strip">GitHub Desktop</div>
       <div class="strip">Push &amp; pull</div>
-      <div class="strip">Even good screenshots</div>
     </div>
     <div class="photo term"><div class="tape teal tc"></div>
       <img src="assets/cmdline.gif" alt="A blinking command-line terminal">
-      <img class="fadein" src="assets/matrix.jpg" alt="Neo from The Matrix in front of falling green code">
+      <img class="fadein reveal" src="assets/matrix.jpg" alt="Neo from The Matrix in front of falling green code">
     </div>
   </div>
-  <aside class="notes"><b>Why GitHub at all?</b> Digital literacy is now required for work and civic life, and GitHub has spread from programmers into technical communication, where "docs as code" is the norm. <b>Why it's hard:</b> the terminal is intimidating. GitHub Desktop has to be downloaded, and push and pull feel clunky. Students are used to platforms like social media, where they can barely change the site. Even careful screenshot instructions look daunting when you don't know your way around. <b>The Matrix image fades in over the terminal after 2 seconds.</b></aside>
+  <aside class="notes"><b>Why GitHub at all?</b> Digital literacy is now required for work and civic life, and GitHub has spread from programmers into technical communication, where "docs as code" is the norm. <b>Why it's hard:</b> the terminal is intimidating. GitHub Desktop has to be downloaded, and push and pull feel clunky. Students are used to platforms like social media, where they can barely change the site. Even careful screenshot instructions look daunting when you don't know your way around. <b>Click (or press space) once to bring in the Matrix image; the next click moves on.</b></aside>
 </section>
 
 <section class="screen s-part" data-part="Commit">
@@ -145,21 +144,7 @@
       <h2>Stand on the shoulders of <span class="em">giants</span></h2>
       <p class="line">We don’t have to start from scratch.</p>
     </div>
-    <svg class="fork-art" viewBox="0 0 300 640" role="img" aria-label="A hand-drawn dinner fork whose tines are git branches">
-      <g class="rough" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M150 630 C138 520 136 420 146 300" stroke="#1f1c4d" stroke-width="34"/>
-        <path d="M146 300 C146 250 150 230 150 210" stroke="#1f1c4d" stroke-width="22"/>
-        <path d="M150 215 C150 170 60 160 60 70" stroke="#c2338f" stroke-width="16"/>
-        <path d="M150 215 C150 160 120 140 120 40" stroke="#6744c0" stroke-width="16"/>
-        <path d="M150 215 C150 160 180 140 180 40" stroke="#0f7f7d" stroke-width="16"/>
-        <path d="M150 215 C150 170 240 160 240 70" stroke="#1590c9" stroke-width="16"/>
-      </g>
-      <g class="rough">
-        <circle cx="60" cy="62" r="20" fill="#c2338f"/><circle cx="120" cy="32" r="20" fill="#6744c0"/>
-        <circle cx="180" cy="32" r="20" fill="#0f7f7d"/><circle cx="240" cy="62" r="20" fill="#1590c9"/>
-        <circle cx="150" cy="215" r="22" fill="#1f1c4d"/><circle cx="146" cy="420" r="14" fill="#fffaf0"/>
-      </g>
-    </svg>
+    <div class="photo forkimg"><div class="tape lilac tc"></div><img src="assets/fork-giants.png" alt="Diagram: a main repository is forked by three users; each fork syncs back to the main repo through pull requests"></div>
   </div>
   <aside class="notes">Remediation and remixing are at the heart of much of my digital humanities work. I give students a baseline site to <b>fork</b> (copy), and my sandbox was itself forked from a colleague's work. Forking is GitHub's whole philosophy, and it's good pedagogy: start from something that works, then make it yours.</aside>
 </section>
@@ -191,10 +176,10 @@
 
 <section class="screen s-principle media ">
   <div class="layout">
-    <div class="sticky aqua" style="transform:rotate(-.8deg)">
+    <div class="sticky aqua small-pieces" style="transform:rotate(-.8deg)">
       <div class="n">③</div>
       <h2>Small pieces, <span class="em">every week</span></h2>
-      <p class="hand purple" style="font-size:calc(100 * var(--p))">draft → reflect → share</p>
+      <p class="hand purple cycle-line">draft → reflect → share</p>
     </div>
     <div class="photo uc"><div class="tape tc"></div><video src="assets/construction.mp4" autoplay muted loop playsinline aria-label="Under construction sign"></video></div>
   </div>
@@ -206,7 +191,6 @@
     <div class="sticky sky" style="transform:rotate(1.3deg)">
       <div class="n">④</div>
       <h2>Redundant <span class="em">resources</span></h2>
-      <p class="line">Sandbox · video · written steps · a jargon guide.</p>
     </div>
     <div class="layers" aria-label="Layered screenshots of the course's GitHub setup page, video, and resources">
       <img class="photo l1" src="assets/layer-steps.jpg" alt="">
@@ -219,11 +203,14 @@
   <aside class="notes">Every key step is available three ways: the interactive sandbox, an 11-minute step-by-step video, and written numbered steps. Many students said the video was key to their confidence. These are the real course pages: written steps, the setup video, extra resources, and a "Before You Begin" jargon guide (fork = copy, commit = save).</aside>
 </section>
 
-<section class="screen s-principle">
-  <div class="sticky" style="transform:rotate(-1.2deg)">
-    <div class="n">⑤</div>
+<section class="screen s-principle media">
+  <div class="layout">
+    <div class="sticky" style="transform:rotate(-1.2deg)">
+      <div class="n">⑤</div>
     <h2>Process over <span class="em">product</span>, concept over <span class="em">button</span></h2>
     <p class="line">The thinking matters more than the polish. GitHub will change; digital literacy adapts.</p>
+  </div>
+    <div class="photo processimg"><div class="tape teal tc"></div><img src="assets/process.jpg" alt="Children making crafts at a table covered in paper, yarn, and supplies"></div>
   </div>
   <aside class="notes">A rough prototype that makes an argument beats a slick page that doesn't. Grading process lowers the stakes for experimenting with an unfamiliar tool. Forking, committing, and publishing are concepts; buttons move. Students start in Markdown (the home page they copy) and move to HTML when they need to embed DH projects, or because they prefer it, as some technical majors do. They leave knowing how the platform works and confident they can learn the next one.</aside>
 </section>
@@ -235,7 +222,7 @@
       <h2>AI for troubleshooting, <span class="em">not thinking</span></h2>
       <p class="line">LLMs as tech support, never as the author.</p>
     </div>
-    <div class="photo clippy"><div class="tape lilac tc"></div><img src="assets/clippy.jpg" alt="Clippy: Hey, it looks like you're waiting for ideal conditions to do that thing you've been wanting to do. Need I remind you that ideal conditions do not exist and will never happen? Options: I'm aware / Wow, rude"></div>
+    <div class="photo clippy"><div class="tape lilac tc"></div><img src="assets/clippy.jpg" alt="Clippy, the paperclip assistant"></div>
   </div>
   <aside class="notes">Students are encouraged to use AI for technical help, the "why won't my page publish?" questions. They're asked not to use it for thinking tasks: reflection writing or generating complete content. Every reflection ends with an AI statement, even if it's just "No AI tools were used in this assignment." (Clippy: the original AI assistant, still giving unsolicited advice.)</aside>
 </section>
@@ -261,23 +248,16 @@
   <aside class="notes">UCF has an enterprise license for Microsoft Copilot. Students sign in with their UCF account, and Microsoft's enterprise data protection says prompts stay within the university and aren't used to train the models. I tell students it "claims" this, which is a digital literacy lesson in itself. Access instructions are in the course, though most students already have a favorite LLM.</aside>
 </section>
 
-<section class="screen s-demo" data-by="3:04">
-  <div class="layout">
-    <div class="photo browser"><div class="tape sky tl"></div>
-      <div class="chrome"><i></i><i></i><i></i><span>ekjphd.com/sandbox/sim.html</span></div>
-      <iframe src="https://ekjphd.com/sandbox/sim.html" title="GitHub sandbox simulation" loading="eager"></iframe>
-    </div>
-    <div class="side">
-      <div class="hand">Try it →</div>
-      <div class="url">ekjphd.com<br>/sandbox</div>
-      <div class="photo qrphoto"><div class="qr" data-url="https://ekjphd.com/sandbox/"><span class="hand">QR</span></div></div>
-    </div>
+<section class="screen s-demo big" data-by="3:04">
+  <div class="photo browser"><div class="tape sky tl"></div>
+    <div class="chrome"><i></i><i></i><i></i><span>ekjphd.com/sandbox</span><em class="hand">the sandbox: try it with me</em></div>
+    <iframe src="https://ekjphd.com/sandbox/sim.html" title="GitHub sandbox simulation (live)" loading="eager"></iframe>
   </div>
   <aside class="notes">About 2 minutes, then move on by 3:06. <b>The sandbox is live on this screen</b>: click inside it to demo. When you're done, click the table outside the sandbox (or press space after clicking outside it) to get your keys back. I used the free version of Claude (Sonnet 4.5) and UCF's Copilot to build a step-by-step simulation of the GitHub web interface: fork my template, customize the home page, enable Pages. It took many iterations and isn't perfect, but it gets students familiar with where things are. AI is closing the gap between technical skills and educators in every discipline. Backup link: <a href="https://ekjphd.com/sandbox/" target="_blank">open the sandbox</a>.</aside>
 </section>
 
 <section class="screen s-site" data-by="3:06">
-  <h2 class="title-row">The site they fork</h2>
+  <h2 class="title-row">The site they fork <span class="hand teal sitecode">ENC 3241</span></h2>
   <div class="layout">
     <div class="photo"><div class="tape tc"></div><img src="assets/enc3241-template.png" alt="The ENC 3241 template home page: 'Your Name Here', a placeholder for the professional paragraph, and links to Resume, Cover Letter, Instructions, and Proposal"></div>
     <div class="note">
@@ -286,6 +266,30 @@
     </div>
   </div>
   <aside class="notes">The baseline every ENC 3241 student forks. It has "Your Name Here," a spot for the Week 2 professional paragraph, and links to the four major assignments. The first change students make is to content, not configuration. 1) Practice in the sandbox. 2) Fork (copy) my template. 3) Edit index.md, the home page, in the browser. 4) Turn on Pages for a github.io address. 5) Add a piece every week. <b>Setup week:</b> <b>Why:</b> portfolios show employers your work, building one teaches web conventions, reflection drives deep learning, and peers show other approaches. <b>Before posting:</b> read the GitHub Pages module, revise last week's Professional Paragraph using peer feedback, and think about your professional identity. <b>Part 1:</b> post the Pages link with the revised paragraph on the site, tested in incognito so it works without a login. <b>Part 2:</b> reflect. What was challenging, what did you learn, what was easy or fun, and what question do you have for your peers? Then add an AI statement. <b>Part 3:</b> two substantive replies.</aside>
+</section>
+
+<section class="screen s-site">
+  <h2 class="title-row">The site they fork <span class="hand teal sitecode">ENC 4265</span></h2>
+  <div class="layout">
+    <div class="photo"><div class="tape tc"></div><img src="assets/enc4265-fork.png" alt="The ENC 4265 portfolio template: Home, Manual Assessment Memo, Chatbot, Procedure Video, Manual, and Reflective Blogs"></div>
+    <div class="note">
+      <div class="addr">ekjphd.com<br>/ENC4265</div>
+      <div class="hand teal" style="margin-top:calc(40 * var(--p))">A page for every assignment.</div>
+    </div>
+  </div>
+  <aside class="notes">The ENC 4265 template, where this started. It has a page waiting for each assignment (Manual Assessment Memo, Chatbot, Procedure Video, Manual, Reflective Blogs), plus an About Me paragraph with writing tips, and a link to the Start Here instructions for copying the site.</aside>
+</section>
+
+<section class="screen s-site">
+  <h2 class="title-row">The site they fork <span class="hand teal sitecode">DIG 3171</span></h2>
+  <div class="layout">
+    <div class="photo"><div class="tape tc"></div><img src="assets/dig3171-fork.png" alt="The DIG 3171 forkable repository site: Forkable repository for students in DIG 3171, with a Course Schedule and Project List page"></div>
+    <div class="note">
+      <div class="addr">ekjphd.com<br>/DIG3171</div>
+      <div class="hand teal" style="margin-top:calc(40 * var(--p))">“Forkable repository for students in DIG 3171.”</div>
+    </div>
+  </div>
+  <aside class="notes">The DIG 3171 template says what it is right on the banner: a forkable repository. It has a Course Schedule &amp; Project List page where students embed their DH projects. The note on the home page says it is set up for someone new to GitHub using it in the browser, and that students already comfortable with GitHub are welcome to use their own organization, theme, and CSS.</aside>
 </section>
 
 <section class="screen s-crp" data-by="3:07">
@@ -342,10 +346,10 @@
   <aside class="notes">1) Redundant resources: sandbox, video, written steps. 2) Small pieces over one big project. 3) Skills that adapt beyond any one platform. And fork my template, which is public. <b>Limits &amp; next steps:</b> the evidence so far is portfolios and reflections. Next I'll compare the video with the sandbox, then measure changes in digital skills and digital self-efficacy.</aside>
 </section>
 
-<section class="screen s-part" data-part="Merge" data-by="3:12">
+<section class="screen s-part" data-part="Patch notes" data-by="3:12">
   <div class="scrap torn"><div class="tape sky tl"></div>
-    <div class="git">$ git merge ai-since-2025</div>
-    <div class="verb" style="color:var(--cyan)">merge</div>
+    <div class="git">$ git log --since=2025</div>
+    <div class="verb" style="color:var(--cyan)">patch notes</div>
     <h2>Since I proposed this…</h2>
     <p>AI kept moving</p>
   </div>
@@ -384,12 +388,7 @@
 </section>
 
 <section class="screen s-verbs" data-by="3:14">
-  <h2>So what should students learn now?</h2>
-  <div class="words">
-    <span style="color:var(--cyan)">Direct.</span>
-    <span style="color:var(--purple)">Check.</span>
-    <span style="color:var(--magenta)">Own.</span>
-  </div>
+  <h2 class="ask"><span style="color:var(--cyan)">So what</span> <span style="color:var(--purple)">should students</span> <span style="color:var(--magenta)">learn now?</span></h2>
   <aside class="notes">If agents can click the buttons, the literacy shifts. <b>Direct:</b> know what to ask for and where things live. <b>Check:</b> read a commit and roll back a bad edit; version control matters more when a machine is editing your files. <b>Own:</b> the reflection, the argument, and the voice stay human. That's why the sandbox, and the English course, still matter.</aside>
 </section>
 
@@ -397,12 +396,12 @@
   <div class="layout">
     <div class="paper torn"><div class="tape tl"></div>
       <h1 style="font-size:calc(140 * var(--p))">Questions?</h1>
-      <p class="sub" style="font-style:normal;color:var(--magenta);font-weight:700">ekjphd.com/sandbox</p>
-      <p class="sub" style="font-style:normal;margin-top:calc(10 * var(--p))">ekjphd.com/ENC3241</p>
+      <p class="sub" style="font-style:normal;color:var(--magenta);font-weight:700"><a href="https://ekjphd.com/aect26/" style="color:inherit;text-decoration:none">ekjphd.com/aect26</a></p>
+      <p class="sub" style="font-style:normal;margin-top:calc(10 * var(--p))"><a href="https://github.com/ekjphd" style="color:inherit;text-decoration:none">github.com/ekjphd</a></p>
     </div>
     <div class="swatch photo"><div class="tape teal tc"></div><div class="art"><div class="name">Emily K. Johnson<small>ekj@ucf.edu</small></div></div></div>
   </div>
-  <aside class="notes">Five minutes for questions; wrap by 3:20. Invite people to fork the template and try the sandbox.</aside>
+  <aside class="notes">Five minutes for questions; wrap by 3:20. Point people to this site (ekjphd.com/aect26) and to github.com/ekjphd, where all the templates and the sandbox live and can be forked.</aside>
 </section>
 
 </main>
