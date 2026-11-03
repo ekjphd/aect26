@@ -555,3 +555,15 @@ ul.ink li::before { content: "✓"; position: absolute; left: 0; font-family: va
 .s-books .book:first-child { transform: rotate(-3deg); } .s-books .book:last-child { transform: rotate(2.5deg); }
 .s-books .books-label { font-size: calc(64 * var(--p)); color: var(--purple); }
 @media (max-aspect-ratio: 1/1) { .s-books .books { flex-direction: column; gap: calc(50 * var(--p)); } .s-books .book img { height: auto; width: min(100%, calc(520 * var(--p))); } }
+/* book covers: always side by side, smaller, tilted */
+
+.s-books .books { flex-direction: row !important; flex-wrap: nowrap; gap: calc(80 * var(--p)) !important; max-width: 100%; }
+.s-books .book { flex: 0 1 auto; max-width: 44%; }
+.s-books .book img { height: calc(500 * var(--p)) !important; width: auto !important; max-width: 100%; object-fit: contain; }
+.s-books .book:first-child { transform: rotate(-4deg) translateY(calc(10 * var(--p))); }
+.s-books .book:last-child { transform: rotate(3.5deg) translateY(calc(-10 * var(--p))); }
+#presenter .p-text { outline: none; min-height: 4em; border-radius: 6px; padding: 4px 6px; margin: -4px -6px; cursor: text; }
+#presenter .p-text:hover { background: rgba(255,255,255,.04); }
+#presenter .p-text:focus { background: rgba(255,255,255,.07); box-shadow: 0 0 0 2px #c2338f; }
+#presenter .p-edited { color: #ffd76a; }
+#presenter .p-reset { font-size: 12px; padding: 2px 8px; margin-left: 6px; letter-spacing: 0; }

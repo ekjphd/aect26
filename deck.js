@@ -63,13 +63,13 @@
     P.id = 'presenter';
     P.innerHTML = `
       <div class="p-top"><div class="p-clock"></div><div class="p-pace"></div>
-        <div class="p-btns"><button data-d="-1">◀ back</button><button data-d="1">next ▶</button><button data-t>start timer (T)</button></div></div>
+        <div class="p-btns"><button data-d="-1">◀ back</button><button data-d="1">next ▶</button><button data-t>start timer (T)</button><button data-dl title="Download all notes, including your edits">download notes</button></div></div>
       <div class="p-main">
         <div class="p-cur"><div class="p-label">NOW</div><div class="p-frame"><iframe src="${base}?preview=0" title="current screen"></iframe></div></div>
         <div class="p-side"><div class="p-label">NEXT</div><div class="p-frame small"><iframe src="${base}?preview=1" title="next screen"></iframe></div>
           <div class="p-notes"></div></div>
       </div>
-      <div class="p-help">space / → next · ← back · T timer · keep this window on your laptop; the audience window follows.</div>`;
+      <div class="p-help">space / → next · ← back · T timer · click the notes to edit them (saved in this browser) · keep this window on your laptop; the audience window follows.</div>`;
     document.body.appendChild(P);
     const notesBox = P.querySelector('.p-notes'), pace = P.querySelector('.p-pace'), clock = P.querySelector('.p-clock');
     P.querySelectorAll('[data-d]').forEach((b) => b.onclick = () => (Number(b.dataset.d) > 0 ? pNext() : pPrev()));
@@ -79,11 +79,25 @@
       pace.innerHTML = paceHTML();
       clock.textContent = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
     };
+    // ---- editable notes, saved per screen in this browser ----
+    const KEY = (n) => 'bo-notes-' + n;
+    const store = { get: (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } },
+                    set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} },
+                    del: (k) => { try { localStorage.removeItem(k); } catch (e) {} } };
+    const origNotes = (n) => { const a = screens[n].querySelector('.notes'); return a ? a.innerHTML : ''; };
+    const notesFor = (n) => store.get(KEY(n)) ?? origNotes(n);
+    let editing = null;
     const pGo = (n, remote, s = 0) => {
       i = Math.max(0, Math.min(N - 1, n));
       st = Math.max(0, Math.min(stepsOf(i), s));
-      const a = screens[i].querySelector('.notes');
-      notesBox.innerHTML = `<div class="p-label">NOTES · screen ${i + 1}</div>${a ? a.innerHTML : ''}`;
+      const edited = store.get(KEY(i)) !== null;
+      notesBox.innerHTML = `<div class="p-label">NOTES · screen ${i + 1}${edited ? ' · <span class="p-edited">edited</span> <button class="p-reset">reset</button>' : ''}</div><div class="p-text" contenteditable="true" spellcheck="true"></div>`;
+      editing = notesBox.querySelector('.p-text');
+      editing.innerHTML = notesFor(i);
+      const me = i;
+      editing.addEventListener('input', () => store.set(KEY(me), editing.innerHTML));
+      const rb = notesBox.querySelector('.p-reset');
+      if (rb) rb.onclick = () => { store.del(KEY(me)); pGo(me, true, st); };
       pRender();
       if (!remote) send({ type: 'go', i, st });
       else P.querySelectorAll('iframe').forEach((f) => { try { f.contentWindow.postMessage({ bo: 1, type: 'go', i, st }, '*'); } catch (e) {} });
@@ -92,8 +106,16 @@
     const pPrev = () => (st > 0 ? pGo(i, false, st - 1) : pGo(i - 1, false, i > 0 ? stepsOf(i - 1) : 0));
     goImpl = pGo; timerImpl = pRender;
     setInterval(pRender, 1000);
+    P.querySelector('[data-dl]').onclick = () => {
+      const txt = screens.map((sc, n) => { const d = document.createElement('div'); d.innerHTML = notesFor(n);
+        const NL = String.fromCharCode(10);
+        return 'Screen ' + (n + 1) + (store.get(KEY(n)) !== null ? ' (edited)' : '') + NL + d.textContent.trim() + NL; }).join(String.fromCharCode(10));
+      const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], { type: 'text/plain' }));
+      a.download = 'branching-out-notes.txt'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    };
     document.addEventListener('keydown', (e) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.target && (e.target.isContentEditable || /^(INPUT|TEXTAREA)$/.test(e.target.tagName))) { if (e.key === 'Escape') e.target.blur(); return; }
       const k = e.key;
       if ([' ', 'ArrowRight', 'ArrowDown', 'PageDown', 'Enter'].includes(k)) { e.preventDefault(); pNext(); }
       else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(k)) { e.preventDefault(); pPrev(); }
