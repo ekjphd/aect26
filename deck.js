@@ -141,6 +141,10 @@
 
   const parts = [];
   screens.forEach((s, n) => { if (s.dataset.part) parts.push({ name: s.dataset.part, n }); });
+  const homeBtn = document.createElement('button');
+  homeBtn.textContent = 'Home';
+  homeBtn.onclick = () => go(0);
+  tabs.appendChild(homeBtn);
   parts.forEach((p) => {
     const b = document.createElement('button');
     b.textContent = p.name;
@@ -173,7 +177,7 @@
     end.classList.toggle('active', shown >= N);
     dots.forEach((d, k) => { d.classList.toggle('done', k < i); d.classList.toggle('here', k === i); });
     let cur = -1; parts.forEach((p, k) => { if (p.n <= i) cur = k; });
-    Array.from(tabs.children).forEach((b, k) => b.classList.toggle('on', k === cur));
+    Array.from(tabs.children).forEach((b, k) => b.classList.toggle('on', k === cur + 1)); // index 0 = Home
     if (MODE === 'audience') {
       renderTimer();
       if (history.replaceState) history.replaceState(null, '', '#' + (i + 1));
